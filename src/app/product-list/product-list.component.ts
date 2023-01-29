@@ -1,18 +1,29 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { products } from '../products';
+import {Product, products} from '../products';
+
+import {CartService} from '../cart.service';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products = products;
+    products = products;
 
-  share() {
-    window.alert('The product has been shared!');
-  }
+    constructor(
+        private cartService: CartService
+    ) {
+    }
+
+    share() {
+        window.alert('The product has been shared!');
+    }
+
+    addToCart(product: Product) {
+        this.cartService.addToCart(product);
+    }
 }
 
 
